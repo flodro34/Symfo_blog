@@ -24,5 +24,6 @@ class BlogController extends AbstractController
     public function home()
     {
         return $this->render('blog/home.html.twig');
+            
     }
 }
