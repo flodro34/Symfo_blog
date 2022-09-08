@@ -11,6 +11,7 @@
     </article>
 
     <section id="commentaires">
+    <h3>{{article.comments | length }} commentaires: </h3>
         {% for comment in article.comments %}
             <div class="comment">
                 <div class="col-3">
@@ -21,6 +22,22 @@
                 </div>
             </div>
         {% endfor %}
+
+        {% if app.user %}
+            <div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 60rem; ">    
+                <div class="card-body">
+                    <h4>Your comment : </h4>
+                    {{ form_start(commentForm)}}
+                    {{ form_row(commentForm.author, {'attr': {'placeholder': 'Your name'}})}}
+                    {{ form_row(commentForm.content, {'attr': {'placeholder' : 'Your comment'}})}}
+                    <button class="btn btn-secondary">Let's go 📖 !</button>
+                    {{ form_end(commentForm) }}
+                </div>
+            </div>
+        {% else %}
+            <h4 class="my-4">Please, 🔗 connection for comment !</h4>
+            <a href="{{ path('security_login') }}" class="btn btn-secondary  mx-auto">Login</a>
+        {% endif %}
     </section>
 
 {% endblock %}
